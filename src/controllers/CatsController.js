@@ -11,7 +11,7 @@ export class CatsController extends BaseController {
 
   getAllCats(request, response, next) {
     try {
-      response.send('Meow! Cats Controller is working')
+      response.send([{ name: 'Georgie' }, { name: 'Frankie' }])
     } catch (error) {
       // NOTE this will handle sending an error response to the client
       next(error)
