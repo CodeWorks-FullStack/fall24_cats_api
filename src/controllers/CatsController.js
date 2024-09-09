@@ -7,6 +7,7 @@ export class CatsController extends BaseController {
     super('api/cats')
     this.router
       .get('', this.getAllCats)
+      .post('', this.createCat)
   }
 
 
@@ -16,6 +17,16 @@ export class CatsController extends BaseController {
       response.send(cats)
     } catch (error) {
       // NOTE this will handle sending an error response to the client
+      next(error)
+    }
+  }
+
+  async createCat(request, response, next) {
+    try {
+      const catData = request.body
+      const cat = await catsService.createCat(catData)
+      response.send(cat)
+    } catch (error) {
       next(error)
     }
   }
